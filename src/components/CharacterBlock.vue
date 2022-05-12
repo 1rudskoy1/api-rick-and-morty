@@ -1,20 +1,32 @@
 <template>
-	<div>
-		characterblock 
-		{{message}}
+	<div class="character-block">
+		<div class="character-block__image">
+			<img :src="character.image" :alt="character.name">
+		</div>
+		<div class="character-block__info">
+			<span>
+				{{character.name}}
+			</span>
+			<span>
+				{{character.status}} - {{character.species}} 
+			</span>
+			<span>
+				Last know location: {{character.location.name}}
+			</span>	
+		</div>
+		
 	</div>
 </template>
 
 <script>
 	export default {
 		name: 'character-block',
-		data(){
-			return {
-				message: 'hellow world'
+		props:{
+			character:{
+				type: Object,
+				required: true,
+
 			}
-		},
-		created(){
-			this.$emit("initialized");
 		}
 	};
 </script>

@@ -28,5 +28,17 @@ export default createStore({
       })
         .catch(err => console.log(err));
     }
-  }
+  },
+  getters: {
+    getCharacterById: (state) => ({id, page}) => {
+      const pageCharacters = state.characters[page];
+      if (pageCharacters) {
+        return pageCharacters.find(character => character.id === id);
+      } return null
+    },
+    getCharactersByPage: (state) => (page) => {
+      const pageCharacters = state.characters[page];
+      return pageCharacters;
+    },
+  },
 })
