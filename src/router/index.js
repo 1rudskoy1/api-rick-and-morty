@@ -8,10 +8,16 @@ const routes = [
     name: 'RickAndMortyList',
     component: RickAndMortyList
   },
+  // {
+  //   path: '/character',
+  //   name: 'RickAndMortyCharacters',
+  //   component: RickAndMortyCharacters
+  // },
   {
-    path: '/character',
-    name: 'RickAndMortyCharacters',
+    path: '/character/:id',
+    name: 'CharacterDetails',
     component: RickAndMortyCharacters
+
   }
 ]
 

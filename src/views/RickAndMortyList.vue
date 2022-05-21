@@ -1,18 +1,12 @@
 <template>
-  <div class="home">Rick and morty<div class="characters-list"><character-block v-for="character in characters" :key="character.id" :character = "character"/>
-  </div> 
-  <!-- <paginate 
-     v-model= "currentPage" 
-     :page-count="pages" 
-     :page-range="3" 
-     :margin-pages="2" 
-  :click-handler = "clickCallback" 
-  :prev-text = "'Prev'" 
-  :next-text = "'Next'" 
-  :container-class= "'pagination'" 
-  :page-class = "'page-item'">
-  </paginate>
- -->  </div>
+  <div class="home">
+    <h1 class="header"> Rick and morty</h1><div class="characters-list"><character-block v-for="character in characters" :key="character.id" :character = "character"/>
+  </div>
+    <div class="btns">
+      <div class="btn" @click="handlerChange('1')">Previous</div>
+      <div class="btn" @click="handlerChange('2')">Next</div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -37,7 +31,9 @@ export default {
 		this.$store.dispatch('fetchCharacters', this.currentPage);
 	},
 	computed: {
-		characters(){
+		characters()
+        {
+          // console.log(this.$store.getters["getCharactersByPage"](this.currentPage));
 			return this.$store.getters["getCharactersByPage"](this.currentPage);
 		},
 		firstCharacter(){
@@ -46,12 +42,25 @@ export default {
 		pages(){
 			return this.$store.state.pages;
 		},
+      watch: { CurrentPage: { handler(page){
+        console.lod("21");
+            this.$store.dispatch('fetchCharacters', page);
+          },
+          immediate: true
+        }
+      }
 	},
-	// methods:{
-	// 	clickCallback(pageNum){
-	// 		console.log({pageNum})
-	// 	}
-	// }
+  methods:{handlerChange(page){
+      if (page == 2){
+        this.currentPage++;
+      }
+      if (page == 1){
+        this.currentPage--;
+      }
+      this.$store.dispatch('fetchCharacters', this.currentPage);
+      // console.log(this.currentPage);
+    },
+  }
 
 }
 </script>

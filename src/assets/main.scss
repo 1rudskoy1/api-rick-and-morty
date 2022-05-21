@@ -1,3 +1,19 @@
+body{
+	background: rgb(32, 35, 41);
+}
+.home{
+	max-width: 1100px;
+	margin: 50px auto;
+}
+.header{
+	color: aliceblue;
+	font-size: 42px;
+}
+.block-info__name{
+	margin: 10px 0px 0px 0px;
+	text-align: center;
+	cursor: pointer;
+}
 .characters-list{
 	display: flex;
 	flex-direction: row;
@@ -6,18 +22,59 @@
 }
 .character-block{
 	display: flex;
-	justify-content: row;
-	width: 22%;
-	margin: 10px;
+	width: 43%;
+	background: rgba(60, 62, 68,0.5);
+	margin: 20px;
+	border-radius: 10px;
 
 	&__image img{
 		width: 160px;
-		height: auto;
+		height: 100%;
 	}
 
 	&__info{
+		text-align: left;
+		padding: 5px 10px;
+		color: beige;
 		display: flex;
+		gap: 20px;
 		flex-direction: column;
 	}
 
+}
+.btns{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 25px;
+	margin-top:25px;
+	align-items: center;
+}
+.btn{
+	border: 1px solid black;
+	width: 200px;
+	padding: 10px 0;
+	cursor: pointer;
+	background: black;
+	color: white;
+	border-radius: 20px;
+	border: 1px solid white;
+	transition: 1s;
+	&:hover{
+		border: 1px solid antiquewhite;
+		box-shadow: 0px 1px 36px 0px antiquewhite;
+	}
+
+	&-back{
+		&:hover{
+			border: 1px solid darkred;
+			box-shadow: 0px 1px 36px 0px darkred;
+		}
+	}
+
+}
+
+.character-main{
+	width:1100px;
+	margin: 0 auto;
 }

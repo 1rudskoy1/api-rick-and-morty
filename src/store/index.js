@@ -2,7 +2,7 @@ import { createStore } from 'vuex'
 
 import axiosInstance from "@/api/index";
 
-import {CHARACTERS_BY_PAGE} from '@/api/routes.js'
+import {CHARACTERS_BY_PAGE, CHARACTERS_BY_ID} from '@/api/routes.js'
 
 export default createStore({
   state: {
@@ -18,7 +18,11 @@ export default createStore({
     }
   },
   actions: {
-    fetchCharacters({commit}, page){
+    fetchCharacters({state,commit}, page){
+      const pageCharacters = state.characters[page];
+      if (pageCharacters){
+        return Promise.resolve(pageCharacters);
+      }
       return axiosInstance.get(CHARACTERS_BY_PAGE(page))
         .then(({data}) => {
           const {info, results} = data;
@@ -27,6 +31,9 @@ export default createStore({
 
       })
         .catch(err => console.log(err));
+    },
+    fetchSingleCharacter(_, id){
+        return axiosInstance.get(CHARACTERS_BY_ID(id))
     }
   },
   getters: {
